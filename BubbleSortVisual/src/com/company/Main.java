@@ -61,9 +61,9 @@ public class Main extends JFrame  implements ActionListener{
     }
 
     private class NumPanel extends JPanel {
-        public NumPanel() {
+        public NumPanel (){
             setVisible(true);
-            setSize(400, 10);
+            setSize(400,10);
         }
     }
 
@@ -72,7 +72,7 @@ public class Main extends JFrame  implements ActionListener{
     {
         if(click.getSource()==random)
         {
-        this.fillRandom();
+            this.fillRandom();
 
         }
         if(click.getSource()==straight)
@@ -113,23 +113,15 @@ public class Main extends JFrame  implements ActionListener{
     private void Sort() {
         countNum = 0;
         for(int i = 0; i < array.length; i++){
-            countNum++;
             for(int j=1;j<array.length;j++)
             {
                 if(array[j] < array[j-1]) {
                     int temp = array[j];
                     array[j] = array[j - 1];
-                    try {
-                        Thread.sleep(3);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    screen.paintComponents(screen.getGraphics());
-                   screen.repaint();
-
                     numbers[j].setText(""+array[j]);
                     array[j - 1] = temp;
                     numbers[j - 1].setText("" + array[j - 1]);
+                    countNum++;
 
                 }
 
@@ -139,14 +131,6 @@ public class Main extends JFrame  implements ActionListener{
         }
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponents(g);
-        String arrayString = "";
-        for (int i = 0; i < Main.this.array.length; i++) {
-            arrayString += " "+Main.this.array[i];
-        }
-        g.drawString(arrayString,10, 20);
-    }
 
     public static void main(String args[]) {
         new Main();
