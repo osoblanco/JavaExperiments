@@ -16,7 +16,6 @@ public class Main extends JFrame  implements ActionListener{
     private JTextField count = new JTextField(4);
     public Main() {
         setLayout(new FlowLayout());
-        setLayout(new FlowLayout());
         add(words);
         add(sents);
         add(parags);
@@ -25,7 +24,6 @@ public class Main extends JFrame  implements ActionListener{
         add(count);
         setSize(280, 420);
         setVisible(true);
-        words.setText("words");
         words.addActionListener(this);
         sents.addActionListener(this);
         parags.addActionListener(this);
@@ -42,11 +40,11 @@ public class Main extends JFrame  implements ActionListener{
             count.setText("");
         }
 
-        String delim = "\t\n";
+        String delim = " \t\n";
         if (arg0.getSource() == sents)
             delim = ".!?";
         else if (arg0.getSource() == parags)
-        delim = "\n";
+            delim = "\n";
         StringTokenizer tokens = new
                 StringTokenizer(text.getText(), delim);
         count.setText("" + tokens.countTokens());
