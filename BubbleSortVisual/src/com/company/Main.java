@@ -113,15 +113,23 @@ public class Main extends JFrame  implements ActionListener{
     private void Sort() {
         countNum = 0;
         for(int i = 0; i < array.length; i++){
-            for(int j=1;j<array.length;j++)
+            for(int k=1;k<10000000;k++)
+            {}
+            for(int j=1;j<array.length-i;j++)
             {
+                countNum++;
                 if(array[j] < array[j-1]) {
+                    for(int k=1;k<10000000;k++)
+                    {}
                     int temp = array[j];
                     array[j] = array[j - 1];
                     numbers[j].setText(""+array[j]);
-                    array[j - 1] = temp;
+                    for(int k=1;k<10000000;k++)
+                    {}
+                        array[j - 1] = temp;
                     numbers[j - 1].setText("" + array[j - 1]);
-                    countNum++;
+                    for(int k=1;k<10000000;k++)
+                    {}
 
                 }
 
