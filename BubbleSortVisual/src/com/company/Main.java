@@ -119,15 +119,33 @@ public class Main extends JFrame  implements ActionListener{
                 if(array[j] < array[j-1]) {
                     int temp = array[j];
                     array[j] = array[j - 1];
+                    try {
+                        Thread.sleep(3);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    screen.paintComponents(screen.getGraphics());
+                   screen.repaint();
+
                     numbers[j].setText(""+array[j]);
                     array[j - 1] = temp;
                     numbers[j - 1].setText("" + array[j - 1]);
 
                 }
+
                 count.setText(""+countNum);
 
             }
         }
+    }
+
+    public void paintComponent(Graphics g) {
+        super.paintComponents(g);
+        String arrayString = "";
+        for (int i = 0; i < Main.this.array.length; i++) {
+            arrayString += " "+Main.this.array[i];
+        }
+        g.drawString(arrayString,10, 20);
     }
 
     public static void main(String args[]) {
