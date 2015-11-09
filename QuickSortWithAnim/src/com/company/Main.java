@@ -15,7 +15,7 @@ public class Main extends JFrame implements ActionListener{
     private JPanel tools = new JPanel(new GridLayout(3,3));
     private JButton random = new JButton("Random");
     private JButton straight = new JButton("Straight");
-    private JButton start = new JButton("Sort");
+    private JButton sort = new JButton("Sort");
     private JTextField count = new JTextField(4);
 
     public static void main(String[] args) {
@@ -31,11 +31,11 @@ public class Main extends JFrame implements ActionListener{
 
         random.addActionListener(this);
         straight.addActionListener(this);
-        start.addActionListener(this);
+        sort.addActionListener(this);
 
         tools.add(random);
         tools.add(straight);
-        tools.add(start);
+        tools.add(sort);
         tools.add(new JLabel("Count: "));
         tools.add(count);
 
@@ -53,9 +53,9 @@ public class Main extends JFrame implements ActionListener{
         else if(e.getSource() == straight) {
             fillStraight();
         }
-        else if(e.getSource() == start) {
+        else if(e.getSource() == sort) {
             iterate();
-            startSort();
+            this.quickSort(array,0,array.length-1);
         }
     }
 
@@ -79,7 +79,7 @@ public class Main extends JFrame implements ActionListener{
 
     public void iterate() {
         try {
-            Thread.sleep(30);
+            Thread.sleep(50);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -88,19 +88,44 @@ public class Main extends JFrame implements ActionListener{
         screen.repaint();
     }
 
-    private void startSort() {
-        int temp;
-        for(int i = 0 ; i < array.length; i++) {
-            for(int j = 1; j < array.length - i; j++) {
+    private void quickSort(int[] arr,int low,int high) {
+        if (arr == null || arr.length == 0)
+            return;
+
+        if (low >= high)
+            return;
+         int i=low,j=high;
+        int pivot=arr[(low+high)/2];
+        while(i<=j)
+        {
+            countNum++;
+            while (arr[i]<pivot)
+            {
                 countNum++;
-                if(array[j] < array[j-1]) {
-                    temp = array[j];
-                    array[j] = array[j-1];
-                    array[j-1] = temp;
-                    iterate();
-                }
+                i++;
+            }
+            while(arr[j]>pivot)
+            {
+                countNum++;
+                j--;
+            }
+            if(i<=j)
+            {
+                countNum++;
+                int temp=arr[i];
+                arr[i]=arr[j];
+                arr[j]=temp;
+                i++;
+                j--;
+                iterate();
             }
         }
+
+        if(low<j)
+            quickSort(arr,low,j);
+        if(high>i)
+            quickSort(arr,i,high);
+
     }
 
     private class NumPanel extends JPanel {
