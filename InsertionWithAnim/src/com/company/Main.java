@@ -55,7 +55,7 @@ public class Main extends JFrame implements ActionListener{
         }
         else if(e.getSource() == sort) {
             iterate();
-            this.quickSort(array,0,array.length-1);
+            this.insertion();
         }
     }
 
@@ -88,43 +88,20 @@ public class Main extends JFrame implements ActionListener{
         screen.repaint();
     }
 
-    private void quickSort(int[] arr,int low,int high) {
-        if (arr == null || arr.length == 0)
-            return;
-
-        if (low >= high)
-            return;
-         int i=low,j=high;
-        int pivot=arr[(low+high)/2];
-        while(i<=j) //
+    private void insertion() {
+        int key,j,i;
+        for( i=1;i<array.length;i++)
         {
-            countNum++;
-            while (arr[i]<pivot)
+            key=array[i];
+            j=i-1;
+            while(j<0 && array[j]>key)
             {
-                countNum++;
-                i++;
-            }
-            while(arr[j]>pivot)
-            {
-                countNum++;
+                array[j+1]=array[j];
                 j--;
             }
-            if(i<=j)
-            {
-                countNum++;
-                int temp=arr[i];
-                arr[i]=arr[j];
-                arr[j]=temp;
-                i++;
-                j--;
-                iterate();
-            }
+            array[j+1]=key;
+            iterate();
         }
-
-        if(low<j)
-            quickSort(arr,low,j);
-        if(high>i)
-            quickSort(arr,i,high);
 
     }
 
