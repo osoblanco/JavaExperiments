@@ -79,7 +79,7 @@ public class Main extends JFrame implements ActionListener{
 
     public void iterate() {
         try {
-            Thread.sleep(50);
+            Thread.sleep(70);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -94,8 +94,9 @@ public class Main extends JFrame implements ActionListener{
         {
             key=array[i];
             j=i-1;
-            while(j<0 && array[j]>key)
+            while(j>0 && array[j]>key)
             {
+                countNum++;
                 array[j+1]=array[j];
                 j--;
             }
